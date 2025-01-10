@@ -29,6 +29,7 @@ const PlantDetails = () => {
   };
   console.log(plant);
   const { category, description, image, price, name, seller, quantity } = plant;
+  console.log(quantity, plant);
   if (isLoading) return <LoadingSpinner />;
   return (
     <Container>

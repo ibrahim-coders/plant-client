@@ -18,7 +18,7 @@ const AddPlant = () => {
     const description = form.description.value;
     const category = form.category.value;
     const price = parseFloat(form.price.value);
-    const quantity = parseFloat(form.quantity.values);
+    const quantity = parseFloat(form.quantity.value);
     const image = form.image.files[0];
     const imageUrl = await imgaeUploade(image);
     //seler infromation
@@ -34,6 +34,7 @@ const AddPlant = () => {
       category,
       price,
       quantity,
+
       image: imageUrl,
       seller,
     };
