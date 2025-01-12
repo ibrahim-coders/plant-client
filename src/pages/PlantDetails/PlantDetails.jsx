@@ -8,7 +8,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import LoadingSpinner from '../../components/Shared/LoadingSpinner';
+import useRole from '../../hooks/useRole';
+import useAuth from '../../hooks/useAuth';
+
 const PlantDetails = () => {
+  const [role] = useRole();
+  const { user } = useAuth();
   const { id } = useParams();
   let [isOpen, setIsOpen] = useState(false);
   const {

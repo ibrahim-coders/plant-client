@@ -11,8 +11,12 @@ import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from '../Form/CheckoutForm';
 
 const PurchaseModal = ({ closeModal, isOpen, plant, refetch }) => {
+  const stripePromise = loadStripe(import.meta.env.VITE_PAYMENY_PUBLISH_KY);
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -69,6 +73,7 @@ const PurchaseModal = ({ closeModal, isOpen, plant, refetch }) => {
       closeModal();
     }
   };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -157,13 +162,14 @@ const PurchaseModal = ({ closeModal, isOpen, plant, refetch }) => {
                     required
                   />
                 </div>
-
-                <div className="mt-3">
-                  <Button
-                    onClick={handlePurchase}
-                    label={`Pay ${totalPrice}$`}
-                  />
-                </div>
+                {/* chackFrom */}
+                <Elements
+                  stripe={stripePromise}
+                  handlePurchase={handlePurchase}
+                  totalPrice={totalPrice}
+                >
+                  <CheckoutForm />
+                </Elements>
               </DialogPanel>
             </TransitionChild>
           </div>

@@ -13,7 +13,7 @@ const ManageUsers = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['users', user?.email],
+    queryKey: ['users'],
     queryFn: async () => {
       const { data } = await axiosSecure(`/all-user/${user?.email}`);
       return data;
@@ -60,12 +60,7 @@ const ManageUsers = () => {
                 </thead>
                 <tbody>
                   {users.map(user => (
-                    <UserDataRow
-                      key={user._id}
-                      user={user}
-                      refetch={refetch}
-                      P
-                    />
+                    <UserDataRow key={user._id} user={user} refetch={refetch} />
                   ))}
                 </tbody>
               </table>

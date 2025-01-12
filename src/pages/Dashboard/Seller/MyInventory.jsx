@@ -2,13 +2,13 @@ import { Helmet } from 'react-helmet-async';
 
 import PlantDataRow from '../../../components/Dashboard/TableRows/PlantDataRow';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import useAuth from '../../../hooks/useAuth';
+
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 
 const MyInventory = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+
   const {
     data: plants = [],
     isLoading,
